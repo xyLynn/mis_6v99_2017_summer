@@ -1,5 +1,5 @@
 
-2017-07-01 17:14 Saturday
+2017-07-01 18:27 Saturday
  Checking Directory: assignment_01 File: create_flight_schedule.py
 Assignment source code file found
 Assignment source code completed a run without a stack trace
@@ -10,17 +10,5 @@ Attempting to read flight schedule file: flight_schedule.csv
 Flight schedule file loaded and validated - 5 points
 Noise restrictions validated - 5 points
 Flight times validated - 5 points
-['T1', 'AUS', '0000', 0, '0600', 360]
-ground time is 360
-['T2', 'DAL', '0000', 0, '0600', 360]
-ground time is 360
-['T3', 'DAL', '0000', 0, '0600', 360]
-ground time is 360
-['T4', 'HOU', '0000', 0, '0600', 360]
-ground time is 360
-['T5', 'HOU', '0000', 0, '0600', 360]
-ground time is 360
-['T6', 'HOU', '0000', 0, '0600', 360]
-ground time is 360
 Ground times validated - 5 points
-TBD - checking for too many aircraft on the group at an airport
+Maximum aircraft per gates at airport validated - 5 points
