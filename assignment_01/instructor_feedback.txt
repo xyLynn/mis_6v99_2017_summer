@@ -1,38 +1,20 @@
 
-2017-07-02 09:57 Sunday
+2017-07-02 10:57 Sunday
  Checking Directory: assignment_01 File: create_flight_schedule.py
 Assignment source code file found
 Assignment source code completed a run without a stack trace
 Please check instructor_stdout.txt for stdout (if any)
 Please check instructor_stderr.txt for stderr (if any)
 Attempting to read flight schedule file: flight_schedule.csv
-Departure time  600  has an invalid format in: T1,AUS,HOU,600,645
-Arrival time  645  has an invalid format in: T1,AUS,HOU,600,645
-Departure time  720  has an invalid format in: T1,HOU,AUS,720,805
-Arrival time  805  has an invalid format in: T1,HOU,AUS,720,805
-Departure time  915  has an invalid format in: T1,AUS,DAL,915,1005
-Departure time  600  has an invalid format in: T2,DAL,HOU,600,705
-Arrival time  705  has an invalid format in: T2,DAL,HOU,600,705
-Departure time  740  has an invalid format in: T2,HOU,DAL,740,845
-Arrival time  845  has an invalid format in: T2,HOU,DAL,740,845
-Departure time  915  has an invalid format in: T2,DAL,HOU,915,1020
-Departure time  600  has an invalid format in: T3,DAL,HOU,600,705
-Arrival time  705  has an invalid format in: T3,DAL,HOU,600,705
-Departure time  740  has an invalid format in: T3,HOU,DAL,740,845
-Arrival time  845  has an invalid format in: T3,HOU,DAL,740,845
-Departure time  915  has an invalid format in: T3,DAL,HOU,915,1020
-Departure time  600  has an invalid format in: T4,HOU,AUS,600,645
-Arrival time  645  has an invalid format in: T4,HOU,AUS,600,645
-Departure time  710  has an invalid format in: T4,AUS,HOU,710,755
-Arrival time  755  has an invalid format in: T4,AUS,HOU,710,755
-Departure time  915  has an invalid format in: T4,HOU,DAL,915,1020
-Departure time  600  has an invalid format in: T5,HOU,DAL,600,705
-Arrival time  705  has an invalid format in: T5,HOU,DAL,600,705
-Departure time  735  has an invalid format in: T5,DAL,HOU,735,840
-Arrival time  840  has an invalid format in: T5,DAL,HOU,735,840
-Departure time  915  has an invalid format in: T5,HOU,AUS,915,1000
-Departure time  600  has an invalid format in: T6,HOU,DAL,600,705
-Arrival time  705  has an invalid format in: T6,HOU,DAL,600,705
-Departure time  735  has an invalid format in: T6,DAL,HOU,735,840
-Arrival time  840  has an invalid format in: T6,DAL,HOU,735,840
-Flight schedule file did not load and validate - 0 points
+[['T1', 'AUS', 'HOU', '0600', 360, '0645', 405], ['T1', 'HOU', 'AUS', '0720', 440, '0805', 485], ['T1', 'AUS', 'DAL', '0915', 555, '1005', 605], ['T1', 'DAL', 'AUS', '1035', 635, '1125', 685], ['T1', 'AUS', 'DAL', '1230', 750, '1320', 800], ['T1', 'DAL', 'AUS', '1350', 830, '1440', 880], ['T1', 'AUS', 'DAL', '1545', 945, '1635', 995], ['T1', 'DAL', 'AUS', '1705', 1025, '1755', 1075], ['T1', 'AUS', 'HOU', '1900', 1140, '1945', 1185], ['T2', 'DAL', 'HOU', '0600', 360, '0705', 425], ['T2', 'HOU', 'DAL', '0740', 460, '0845', 525], ['T2', 'DAL', 'HOU', '0915', 555, '1020', 620], ['T2', 'HOU', 'DAL', '1055', 655, '1200', 720], ['T2', 'DAL', 'HOU', '1230', 750, '1335', 815], ['T2', 'HOU', 'DAL', '1410', 850, '1515', 915], ['T2', 'DAL', 'HOU', '1545', 945, '1650', 1010], ['T2', 'HOU', 'DAL', '1725', 1045, '1830', 1110], ['T2', 'DAL', 'HOU', '1900', 1140, '2005', 1205], ['T3', 'DAL', 'HOU', '0600', 360, '0705', 425], ['T3', 'HOU', 'DAL', '0740', 460, '0845', 525], ['T3', 'DAL', 'HOU', '0915', 555, '1020', 620], ['T3', 'HOU', 'DAL', '1055', 655, '1200', 720], ['T3', 'DAL', 'HOU', '1230', 750, '1335', 815], ['T3', 'HOU', 'DAL', '1410', 850, '1515', 915], ['T3', 'DAL', 'HOU', '1545', 945, '1650', 1010], ['T3', 'HOU', 'DAL', '1725', 1045, '1830', 1110], ['T3', 'DAL', 'HOU', '1900', 1140, '2005', 1205], ['T4', 'HOU', 'AUS', '0600', 360, '0645', 405], ['T4', 'AUS', 'HOU', '0710', 430, '0755', 475], ['T4', 'HOU', 'DAL', '0915', 555, '1020', 620], ['T4', 'DAL', 'HOU', '1050', 650, '1155', 715], ['T4', 'HOU', 'DAL', '1230', 750, '1335', 815], ['T4', 'DAL', 'HOU', '1405', 845, '1510', 910], ['T4', 'HOU', 'AUS', '1900', 1140, '1945', 1185], ['T5', 'HOU', 'DAL', '0600', 360, '0705', 425], ['T5', 'DAL', 'HOU', '0735', 455, '0840', 520], ['T5', 'HOU', 'AUS', '0915', 555, '1000', 600], ['T5', 'AUS', 'HOU', '1025', 625, '1110', 670], ['T5', 'HOU', 'DAL', '1545', 945, '1650', 1010], ['T5', 'DAL', 'HOU', '1720', 1040, '1825', 1105], ['T5', 'HOU', 'DAL', '1900', 1140, '2005', 1205], ['T6', 'HOU', 'DAL', '0600', 360, '0705', 425], ['T6', 'DAL', 'HOU', '0735', 455, '0840', 520], ['T6', 'HOU', 'AUS', '1230', 750, '1315', 795], ['T6', 'AUS', 'HOU', '1340', 820, '1425', 865], ['T6', 'HOU', 'AUS', '1545', 945, '1630', 990], ['T6', 'AUS', 'HOU', '1655', 1015, '1740', 1060], ['T6', 'HOU', 'DAL', '1900', 1140, '2005', 1205]]
+Successful run of program - 5 points
+Flight schedule file loaded and validated - 5 points
+Noise restrictions validated - 5 points
+Flight times validated - 5 points
+Ground times validated - 5 points
+Maximum aircraft per gates at airport validated - 5 points
+Aircraft are in position for the next day validated - 5 points
+All aircraft flew at least 5 flights - 10 points
+All aircraft flew at least 3 flights per market - 10 points
+Total number of flights was 48
+Students will receive up to 10 points depending on the percentile of their number of flights
