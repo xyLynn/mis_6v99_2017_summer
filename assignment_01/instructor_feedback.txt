@@ -1,14 +1,38 @@
 
-2017-07-01 20:01 Saturday
+2017-07-02 09:57 Sunday
  Checking Directory: assignment_01 File: create_flight_schedule.py
 Assignment source code file found
 Assignment source code completed a run without a stack trace
 Please check instructor_stdout.txt for stdout (if any)
 Please check instructor_stderr.txt for stderr (if any)
 Attempting to read flight schedule file: flight_schedule.csv
-[['T1', 'AUS', 'DAL', '0600', 360, '0650', 410], ['T2', 'DAL', 'HOU', '0600', 360, '0705', 425], ['T3', 'DAL', 'HOU', '0600', 360, '0705', 425], ['T4', 'HOU', 'AUS', '0600', 360, '0645', 405], ['T5', 'HOU', 'DAL', '0600', 360, '0705', 425], ['T6', 'HOU', 'DAL', '0600', 360, '0705', 425]]
-Flight schedule file loaded and validated - 5 points
-Noise restrictions validated - 5 points
-Flight times validated - 5 points
-Ground times validated - 5 points
-Maximum aircraft per gates at airport validated - 5 points
+Departure time  600  has an invalid format in: T1,AUS,HOU,600,645
+Arrival time  645  has an invalid format in: T1,AUS,HOU,600,645
+Departure time  720  has an invalid format in: T1,HOU,AUS,720,805
+Arrival time  805  has an invalid format in: T1,HOU,AUS,720,805
+Departure time  915  has an invalid format in: T1,AUS,DAL,915,1005
+Departure time  600  has an invalid format in: T2,DAL,HOU,600,705
+Arrival time  705  has an invalid format in: T2,DAL,HOU,600,705
+Departure time  740  has an invalid format in: T2,HOU,DAL,740,845
+Arrival time  845  has an invalid format in: T2,HOU,DAL,740,845
+Departure time  915  has an invalid format in: T2,DAL,HOU,915,1020
+Departure time  600  has an invalid format in: T3,DAL,HOU,600,705
+Arrival time  705  has an invalid format in: T3,DAL,HOU,600,705
+Departure time  740  has an invalid format in: T3,HOU,DAL,740,845
+Arrival time  845  has an invalid format in: T3,HOU,DAL,740,845
+Departure time  915  has an invalid format in: T3,DAL,HOU,915,1020
+Departure time  600  has an invalid format in: T4,HOU,AUS,600,645
+Arrival time  645  has an invalid format in: T4,HOU,AUS,600,645
+Departure time  710  has an invalid format in: T4,AUS,HOU,710,755
+Arrival time  755  has an invalid format in: T4,AUS,HOU,710,755
+Departure time  915  has an invalid format in: T4,HOU,DAL,915,1020
+Departure time  600  has an invalid format in: T5,HOU,DAL,600,705
+Arrival time  705  has an invalid format in: T5,HOU,DAL,600,705
+Departure time  735  has an invalid format in: T5,DAL,HOU,735,840
+Arrival time  840  has an invalid format in: T5,DAL,HOU,735,840
+Departure time  915  has an invalid format in: T5,HOU,AUS,915,1000
+Departure time  600  has an invalid format in: T6,HOU,DAL,600,705
+Arrival time  705  has an invalid format in: T6,HOU,DAL,600,705
+Departure time  735  has an invalid format in: T6,DAL,HOU,735,840
+Arrival time  840  has an invalid format in: T6,DAL,HOU,735,840
+Flight schedule file did not load and validate - 0 points
