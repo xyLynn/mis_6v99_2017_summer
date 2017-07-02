@@ -223,8 +223,8 @@ flight(8)
 
 for i in range(0,6):
     for j in range(0,10):
-        T[i][j][4] = str(int(int(T[i][j][4])/60)*100+int(int(T[i][j][4])%60))
-        T[i][j][3] = str(int(int(T[i][j][3])/60)*100+int(int(T[i][j][3])%60))
+        T[i][j][4] = str(int(int(T[i][j][4])/60)*100+int(int(T[i][j][4])%60)).zfill(4)
+        T[i][j][3] = str(int(int(T[i][j][3])/60)*100+int(int(T[i][j][3])%60)).zfill(4)
         del T[i][j][-1] 
     del T[i][-1] 
 
