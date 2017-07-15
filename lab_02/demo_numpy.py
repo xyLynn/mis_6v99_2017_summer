@@ -9,7 +9,7 @@ import sys
 import numpy as np
 a = np.arange(15).reshape(3,5)
 
-sys.stdout = open('demo_numpy0.txt', 'w')
+sys.stdout = open('demo_numpy.txt', 'w')
 print(a)
 print(a.shape)
 print(a.size)
