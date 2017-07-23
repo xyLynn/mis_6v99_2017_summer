@@ -136,7 +136,7 @@ while sheet.cell(row=i, column=1).value !=None: #transform excel content into li
     rank = [sheet.cell(row=i, column=1).value, sheet.cell(row=i, column=2).value]
     ranker.append(rank)
     i += 1
-r = pd.DataFrame(ranker[1:], columns=["ProviderID", "Ranking"])  #transform list into pandas dataframe
+r = pd.DataFrame(ranker[1:], columns=["Provider ID", "Ranking"])  #transform list into pandas dataframe
 #create a pandas dataframe for sheet Focus States
 sheet2 = wb.get_sheet_by_name("Focus States")
 fst = []
@@ -153,10 +153,10 @@ hlist = [] #transform file content into list
 for row[:7] in csv.reader(hf):
     hlist.append(row[:7])
 hf.close()
-h = pd.DataFrame(hlist[1:], columns=["ProviderID", "HospitalName", "Address", "City", "State", "ZipCode", "County"]) #transform list into pandas dataframe
+h = pd.DataFrame(hlist[1:], columns=["Provider ID", "Hospital Name", "Address", "City", "State", "ZipCode", "County"]) #transform list into pandas dataframe
 
 #left join Ranking and Hospital Information
-nation = pd.merge(r, h, how='left', left_on='ProviderID', right_on='ProviderID' )
+nation = pd.merge(r, h, how='left', left_on='Provider ID', right_on='Provider ID' )
 nation = nation.drop("Address", 1)
 nation = nation.drop("ZipCode", 1)
 nation = nation.drop("Ranking", 1)
