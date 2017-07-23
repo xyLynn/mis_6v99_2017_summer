@@ -160,15 +160,16 @@ nation = pd.merge(r, h, how='left', left_on='Provider ID', right_on='Provider ID
 nation = nation.drop("Address", 1)
 nation = nation.drop("ZipCode", 1)
 nation = nation.drop("Ranking", 1)
-nation = nation.head(100)
 
+nationwide = nation.head(100)
 #export the data to excel
 writer = pd.ExcelWriter('hospital_ranking.xlsx', engine='xlsxwriter')
 pd.io.formats.excel.header_style = None
-nation.to_excel(writer,'Nationwide', index=False)
+nationwide.to_excel(writer,'Nationwide', index=False)
 for i in range(1, len(fst)): #export data to state sheet
     if (nation['State'] == fst[i][1]).any():
         state = nation[nation.State == fst[i][1]]
+        state = state.head(100)
         state.to_excel(writer,fst[i][0], index=False)
 #save the changes
 writer.save()
@@ -185,50 +186,22 @@ timedata = pd.read_csv(tfp, encoding= 'utf-8')
 timedt = timedata[['State', 'Measure ID', 'Measure Name', 'Score']] 
 dt = timedt.values.tolist() #transform to list
 
-
-##all nonduplicate data that contained characters 
-#check = []
-#for i in range(0, len(dt)):
-#    st = dt[i][3]
-#    word = " ".join(re.findall("[a-zA-Z]+", st))
-#    if word != '':
-#        check.append(st)
-#    else:
-#        pass
-#print(set(check))
-
-##the result
-#['High (40,000 - 59,999 patients annually)',
-# 'Low (0 - 19,999 patients annually)',
-# 'Medium (20,000 - 39,999 patients annually)',
-# 'Not Available',
-# 'Very High (60,000+ patients annually)']
-
-
-#relace the mix of numeric and non-numeric data 
-for i in range(0, len(dt)):
-    if dt[i][3] == 'High (40,000 - 59,999 patients annually)': 
-        dt[i][3] = (40000 + 59999)/2
-    elif dt[i][3] == 'Low (0 - 19,999 patients annually)':
-        dt[i][3] = (0 + 19999)/2
-    elif dt[i][3] == 'Medium (20,000 - 39,999 patients annually)':
-        dt[i][3] = (20000 + 39999)/2
-    elif dt[i][3] == 'Very High (60,000+ patients annually)':
-        dt[i][3] = 60001
-    elif dt[i][3] == 'Not Available':
-        dt[i] = []
-
 #delete the non-numeric data
-cleanedl = [x for x in dt if x != []]
+cleanedl = []
+for i in range(0, len(dt)):
+    if dt[i][3].isdigit():
+        l = dt[i]
+        cleanedl.append(l)
 
 #transform to dataframe
 cleanedf = pd.DataFrame(cleanedl, columns=["state", "measure_id", "measure_name", "score"], dtype = float)
-
+cleanedf
 #calculate the aggregation for Nationwide sheet
 fnation = cleanedf.drop('state', 1)
 grouped = fnation.groupby(['measure_id', 'measure_name'])
 g = grouped['score'].agg([np.min, np.max, np.mean, np.std]).reset_index()
 g.columns = ['Measure ID', 'Measure Name', 'Minimum', 'Maximum', 'Average', 'Standard Deviation']
+g = g.sort_values(['Measure ID'])
 #export data to Nationwide
 writer = pd.ExcelWriter('measures_statistics.xlsx', engine='xlsxwriter')
 pd.io.formats.excel.header_style = None
