@@ -6,8 +6,11 @@ This is a temporary script file.
 """
 
 #import modules
-import requests, os, zipfile, openpyxl,sqlite3, glob, getpass, re, csv
+import requests, os, zipfile, openpyxl,sqlite3, glob, re, csv
 import pandas as pd
+import pandas.io.formats.excel
+import numpy as np
+
 
 #FIRST QUESTION
 #create a staging subdirectory called 'staging'
@@ -159,25 +162,6 @@ nation = nation.drop("ZipCode", 1)
 nation = nation.drop("Ranking", 1)
 nation = nation.head(100)
 
-#create excel file Nationwide
-wb2 = openpyxl.Workbook()
-#define a function to create sheets
-def creat_sheet(sheetname):
-    sheet_1 = wb2.create_sheet(sheetname)
-    sheet_1.cell(row=1, column=1, value='Provider ID') #specify column names
-    sheet_1.cell(row=1, column=2, value='Hospital Name')
-    sheet_1.cell(row=1, column=3, value='City')
-    sheet_1.cell(row=1, column=4, value='State')
-    sheet_1.cell(row=1, column=5, value='County')
-#use the defined function to create state sheets and Nationwide sheet
-creat_sheet("Nationwide")
-for i in range(1, len(fst)):
-    creat_sheet(fst[i][0])
-wb2.remove_sheet(wb2.get_sheet_by_name('Sheet'))
-#save the excel
-wb2.save("hospital_ranking.xlsx")
-wb2.close()
-
 #export the data to excel
 writer = pd.ExcelWriter('hospital_ranking.xlsx', engine='xlsxwriter')
 pd.io.formats.excel.header_style = None
@@ -195,7 +179,72 @@ writer.save()
 
 
 #THIRD QUESTION
+#import fix file
+tfp = os.path.join(staging_dir_name, 'timely_and_effective_care___hospital.fix')
+timedata = pd.read_csv(tfp, encoding= 'utf-8')
+timedt = timedata[['State', 'Measure ID', 'Measure Name', 'Score']] 
+dt = timedt.values.tolist() #transform to list
 
+
+##all nonduplicate data that contained characters 
+#check = []
+#for i in range(0, len(dt)):
+#    st = dt[i][3]
+#    word = " ".join(re.findall("[a-zA-Z]+", st))
+#    if word != '':
+#        check.append(st)
+#    else:
+#        pass
+#print(set(check))
+
+##the result
+#['High (40,000 - 59,999 patients annually)',
+# 'Low (0 - 19,999 patients annually)',
+# 'Medium (20,000 - 39,999 patients annually)',
+# 'Not Available',
+# 'Very High (60,000+ patients annually)']
+
+
+#relace the mix of numeric and non-numeric data 
+for i in range(0, len(dt)):
+    if dt[i][3] == 'High (40,000 - 59,999 patients annually)': 
+        dt[i][3] = (40000 + 59999)/2
+    elif dt[i][3] == 'Low (0 - 19,999 patients annually)':
+        dt[i][3] = (0 + 19999)/2
+    elif dt[i][3] == 'Medium (20,000 - 39,999 patients annually)':
+        dt[i][3] = (20000 + 39999)/2
+    elif dt[i][3] == 'Very High (60,000+ patients annually)':
+        dt[i][3] = 60001
+    elif dt[i][3] == 'Not Available':
+        dt[i] = []
+
+#delete the non-numeric data
+cleanedl = [x for x in dt if x != []]
+
+#transform to dataframe
+cleanedf = pd.DataFrame(cleanedl, columns=["state", "measure_id", "measure_name", "score"], dtype = float)
+
+#calculate the aggregation for Nationwide sheet
+fnation = cleanedf.drop('state', 1)
+grouped = fnation.groupby(['measure_id', 'measure_name'])
+g = grouped['score'].agg([np.min, np.max, np.mean, np.std]).reset_index()
+g.columns = ['Measure ID', 'Measure Name', 'Minimum', 'Maximum', 'Average', 'Standard Deviation']
+#export data to Nationwide
+writer = pd.ExcelWriter('measures_statistics.xlsx', engine='xlsxwriter')
+pd.io.formats.excel.header_style = None
+g.to_excel(writer,'Nationwide', index=False)
+
+#export data to states sheets
+for i in range(1, len(fst)): 
+    if (cleanedf['state'] == fst[i][1]).any():
+       sf= cleanedf[cleanedf.state == fst[i][1]] 
+       sf = sf.drop('state', 1)
+       sgrouped = sf.groupby(['measure_id', 'measure_name'])
+       sg = sgrouped['score'].agg([np.min, np.max, np.mean, np.std]).reset_index() #.reset_index() to remain the primary key, calculate the aggregation for states sheets
+       sg.columns = ['Measure ID', 'Measure Name', 'Minimum', 'Maximum', 'Average', 'Standard Deviation']
+       sg.to_excel(writer, fst[i][0], index=False)
+        
+writer.save()
 
 
 
