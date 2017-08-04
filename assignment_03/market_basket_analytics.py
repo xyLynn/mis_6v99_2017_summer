@@ -4,7 +4,7 @@ Created on Fri Aug  4 02:08:27 2017
 
 @author: Lynn
 """
-import requests
+import requests, itertools
 
 #download two files
 test_url = 'http://kevincrook.com/utd/market_basket_test.txt'
@@ -72,6 +72,19 @@ for i in range(len(tests)):
     recolist.append(recommended(tests[i]))
     recolist[i].insert(0, str(i+1).zfill(3))
 
+for m in range(1,3): 
+    for j in range(len(recolist)):
+        if recolist[j][1] == 'NA':   
+            te = list(tests[j])
+            pool = list(itertools.combinations(te, (len(te)-m)))
+            
+            relist = []
+            for item in pool:
+                relist.append(recommended(set(item)))
+                for i in range(len(relist)):
+                    if relist[i] != ['NA']:
+                        recolist[j][1] = relist[i][0]
+                        
 
 #export the file
 with open("market_basket_recommendations.txt", "w") as f:
