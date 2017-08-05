@@ -1,8 +1,10 @@
 
-2017-08-04 20:59 Friday
+2017-08-05 12:07 Saturday
  Checking Directory: assignment_03 File: market_basket_analytics.py
 Assignment source code file found
-Assignment hit a timeout for long run time
-Please contact instructor if you feel the run time was legitimate and not an infinite loop
+Assignment source code completed a run without a stack trace
 Please check instructor_stdout.txt for stdout (if any)
 Please check instructor_stderr.txt for stderr (if any)
+Verifying that your market_basket_recommendations.txt file exists and matches the solution file
+Total matches: 100 of 100
+Total Points: 100
